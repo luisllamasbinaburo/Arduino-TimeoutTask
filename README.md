@@ -15,10 +15,6 @@ Una instancia TimeoutTask dispone de una condición y dos funciones de callback,
 Se dispone de dos formas de uso de la librería. Una es instanciar un objeto de la clase TimeoutTask, y llamar a su método Run(). La forma alternativa es llamar directamente al método estático Run().
 
 
-<h1>Manual de uso</h1>
-
-<h3>Uso como objeto</h3>
-
 ### Uso como objeto
 La clase TimeoutTask puede instanciarse como un objeto a través de su constructor, y activarse con el método Run().
 ```c++
@@ -38,7 +34,7 @@ Alternativamente, podemos ejecutar la TimeoutTAsk a través del método estátic
 
 ```c++
 static void Run(unsigned long timeout, ConditionFunc conditionFunc, CallbackAction okCallback, CallbackAction timeoutCallback);
-``
+```
 
 
 ## Ejemplos
