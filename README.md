@@ -8,20 +8,20 @@ La clase TimeoutTask está pensada para la ejecución de tareas costosas computa
 
 Por ejemplo en comunicaciones, podemos esperar una señal de inicio durante un breve periodo y, si recibimos se recibe la señal, iniciar el proceso de recepción/envío propiamente dicho. Otro ejemplo podría ser comprobar si el estado de unas entradas es el esperado, y en caso afirmativo realizar un cálculo o iniciar un actuador.
 
-Por otro lado, Timeout Task también es útil para implementar de forma sencilla un watchdog. Por ejemplo, encender un motor durante un cierto tiempo, y esperar que alcance un pulsador de fin de carrera. En caso de sobrepasar un tiempo razonable, detener el motor por seguridad.
+Por otro lado, TimeoutTask también es útil para implementar de forma sencilla un watchdog. Por ejemplo, encender un motor durante un cierto tiempo, y esperar que alcance un pulsador de fin de carrera. En caso de sobrepasar un tiempo razonable, detener el motor por seguridad.
 
-Una instancia TimeoutTask dispone de una condición y dos funciones de callback, OkCallback y timeoutCallback. Al ejecutar la tarea, se evalúa la condición continuamente durante el tiempo especificado. Si en algún momento la condición es cierta, se ejecuta la función de okCallback. Si, por el contrario, expira el tiempo de Timeout, se ejecuta la acción TimeOutCallback y se devuelve el flujo de control.
+Una instancia TimeoutTask dispone de una condición y dos funciones de callback, `OkCallback` y `TimeoutCallback`. Al ejecutar la tarea, se evalúa la condición continuamente durante el tiempo especificado. Si en algún momento la condición es cierta, se ejecuta la función de `OkCallback`. Si, por el contrario, expira el tiempo de Timeout, se ejecuta la acción `TimeoutCallback` y se devuelve el flujo de control.
 
-Se dispone de dos formas de uso de la librería. Una es instanciar un objeto de la clase TimeoutTask, y llamar a su método Run(). La forma alternativa es llamar directamente al método estático Run().
+Se dispone de dos formas de uso de la librería. Una es instanciar un objeto de la clase TimeoutTask, y llamar a su método `Run()`. La forma alternativa es llamar directamente al método estático `Run()`.
 
 
 ### Uso como objeto
-La clase TimeoutTask puede instanciarse como un objeto a través de su constructor, y activarse con el método Run().
+La clase TimeoutTask puede instanciarse como un objeto a través de su constructor, y activarse con el método `Run()`.
 ```c++
 // Constructor
-TimeoutTask(unsigned long timeout, bool(*condition_func)(), 
-	void(*callback_action)(), 
-	void(*callback_action1)())
+TimeoutTask(unsigned long timeout, bool(*conditionFunc)(), 
+	void(*okCallback)(), 
+	void(*timeoutCallback)())
 {
 }
 
@@ -30,7 +30,7 @@ void Run() const;
 ```
 
 ### Uso como método estático
-Alternativamente, podemos ejecutar la TimeoutTAsk a través del método estático Run().
+Alternativamente, podemos ejecutar la TimeoutTAsk a través del método estático `Run()`.
 
 ```c++
 static void Run(unsigned long timeout, ConditionFunc conditionFunc, CallbackAction okCallback, CallbackAction timeoutCallback);
@@ -61,7 +61,7 @@ void loop()
 }
 ```
 
-* StaticTimeOutTask: Ejemplo con método estático Run()
+* StaticTimeOutTask: Ejemplo con método estático `Run()`
 ```c++
 #include "TimeoutTask.h"
 
