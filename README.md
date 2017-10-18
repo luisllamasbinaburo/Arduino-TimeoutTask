@@ -30,7 +30,7 @@ void Run() const;
 ```
 
 ### Uso como método estático
-Alternativamente, podemos ejecutar la TimeoutTAsk a través del método estático `Run()`.
+Alternativamente, podemos ejecutar la TimeoutTask a través del método estático `Run()`.
 
 ```c++
 static void Run(unsigned long timeout, ConditionFunc conditionFunc, CallbackAction okCallback, CallbackAction timeoutCallback);
