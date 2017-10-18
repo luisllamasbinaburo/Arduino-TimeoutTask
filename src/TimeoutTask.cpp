@@ -14,7 +14,7 @@ void TimeoutTask::Run() const
 	Run(_timeout, _conditionFunc, _okCallback, _timeoutCallback);
 }
 
-void TimeoutTask::Run(unsigned long timeout, ConditionFunc cond, CallbackAction okCallback, CallbackAction timeoutCallback)
+void TimeoutTask::Run(unsigned long timeout, ConditionFunc conditionFunc, CallbackAction okCallback, CallbackAction timeoutCallback)
 {
 	unsigned long starttime;
 	bool timeExceed = true;
@@ -22,7 +22,7 @@ void TimeoutTask::Run(unsigned long timeout, ConditionFunc cond, CallbackAction 
 
 	while (timeExceed == true && (micros() - starttime) < timeout)
 	{
-		if (cond()) timeExceed = false;
+		if (conditionFunc()) timeExceed = false;
 	}
 	if (timeExceed) timeoutCallback();
 	else okCallback();
