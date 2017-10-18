@@ -22,15 +22,15 @@ class TimeoutTask
 	typedef void(*CallbackAction)();
 
 public:
-	TimeoutTask(unsigned long timeout, bool(*condition_func)(), void(*callback_action)(), void(*callback_action1)())
-		: _timeout(timeout), _conditionFunc(condition_func), _okCallback(callback_action), _timeoutCallback(callback_action1)
+	TimeoutTask(unsigned long timeout, bool(*conditionFunc)(), void(*okCallback)(), void(*timeoutCallback)())
+		: _timeout(timeout), _conditionFunc(conditionFunc), _okCallback(okCallback), _timeoutCallback(timeoutCallback)
 	{
 	}
 
 	void Run() const;
 
 	static void Run(unsigned long timeout,
-		ConditionFunc cond,
+		ConditionFunc conditionFunc,
 		CallbackAction okCallback,
 		CallbackAction timeoutCallback);
 
